@@ -1,0 +1,46 @@
+?SECTION NEW
+Ping(ACCEPT)    net                             $FW     # Accept ICMP
+SSH(ACCEPT)     net                             $FW     # Accept SSH from everywhere.
+
+# Zeus
+ACCEPT          net:139.162.157.135             $FW tcp    5666
+ACCEPT          net:139.162.160.52              $FW tcp    5666
+
+# AMS03 SMPP
+ACCEPT          net:185.60.200.194/27           $FW tcp    7770
+ACCEPT          net:185.60.200.194/27           $FW tcp    7771
+ACCEPT          net:185.60.200.194/27           $FW tcp    7776
+ACCEPT          net:185.60.200.194/27           $FW tcp    7777
+ACCEPT          net:185.60.200.194/27           $FW tcp    7778
+ACCEPT          net:185.60.200.194/27           $FW tcp    6776
+
+ACCEPT          net:185.60.200.195/27           $FW tcp    7770
+ACCEPT          net:185.60.200.195/27           $FW tcp    7771
+ACCEPT          net:185.60.200.195/27           $FW tcp    7776
+ACCEPT          net:185.60.200.195/27           $FW tcp    7777
+ACCEPT          net:185.60.200.195/27           $FW tcp    7778
+ACCEPT          net:185.60.200.195/27           $FW tcp    6776
+
+
+# AMS03 - gwutil_srv
+ACCEPT          net:185.60.200.194              $FW tcp    1888
+ACCEPT          net:185.60.200.195              $FW tcp    1888
+ACCEPT          net:185.10.231.73               $FW tcp    1888
+
+# AMS03 - bearerbox
+ACCEPT          net:185.10.231.73               $FW tcp    13000 # ams routing05 admin
+ACCEPT          net:10.9.96.8                   $FW tcp    13000 # fra local admin
+ACCEPT          net:185.60.200.194              $FW tcp    13003 # smsbox-port 
+ACCEPT          net:185.60.200.195              $FW tcp    13003 # smsbox-port
+ACCEPT          net:10.9.96.10                  $FW tcp    13003 # smsbox-port gw-b-fra
+ACCEPT          net:10.9.95.5                   $FW tcp    13003 # smsbox-port local gw-a-fra ?!
+
+# AMS03 - smsgw
+ACCEPT          net:185.10.231.73               $FW tcp    8983 # ams routing05 admin smppgw2770
+ACCEPT          net:185.10.231.73               $FW tcp    8981 # ams routing05 admin smppgw2771
+ACCEPT          net:185.10.231.73               $FW tcp    8989 # ams routing05 admin smppgw2776
+ACCEPT          net:185.10.231.73               $FW tcp    8980 # ams routing05 admin smppgw2777
+
+
+# Include SMPP clients.
+INCLUDE /opt/test/shorewall/shorewall.rules.smpp.active
