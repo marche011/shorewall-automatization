@@ -40,8 +40,7 @@ ACCEPT          net:185.10.231.73               $FW tcp    8983 # ams routing05 
 ACCEPT          net:185.10.231.73               $FW tcp    8981 # ams routing05 admin smppgw2771
 ACCEPT          net:185.10.231.73               $FW tcp    8989 # ams routing05 admin smppgw2776
 ACCEPT          net:185.10.231.73               $FW tcp    8980 # ams routing05 admin smppgw2777
-ACCEPT          net:1.1.1.1                     $FW tcp    1234 # test3
 
-
+# Promene koje sam odradio posle github-a
 # Include SMPP clients.
 INCLUDE /opt/test/shorewall/shorewall.rules.smpp.active
